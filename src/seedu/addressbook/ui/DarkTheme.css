@@ -1,8 +1,66 @@
+@font-face {
+    font-family: 'Source Code Pro';
+    font-weight: normal;
+    font-style: normal;
+    src: url('fonts/SourceCodePro-Regular.otf');
+}
 
+@font-face {
+    font-family: 'Source Code Pro';
+    font-weight: bold;
+    font-style: normal;
+    src: url('fonts/SourceCodePro-Bold.otf');
+}
+
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-weight: normal;
+    font-style: italic;
+    src: url('fonts/SourceCodePro-It.otf');
+}
+
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-weight: bold;
+    font-style: italic;
+    src: url('fonts/SourceCodePro-BoldIt.otf');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: normal;
+    font-style: normal;
+    src: url('fonts/SourceSansPro-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+    font-style: normal;
+    src: url('fonts/SourceSansPro-Bold.otf');
+}
+
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: normal;
+    font-style: italic;
+    src: url('fonts/SourceSansPro-It.otf');
+}
+
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+    font-style: italic;
+    src: url('fonts/SourceSansPro-BoldIt.otf');
+}
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Consolas";
+    -fx-font-family: 'Source Code Pro';
     -fx-font-weight: bold;
     -fx-text-fill: yellow;
     -fx-control-inner-background: derive(#1d1d1d,20%);
@@ -11,7 +69,7 @@
 .text-area {
     -fx-background-color: black;
     -fx-control-inner-background: black;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 10pt;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 11pt;
     -fx-padding: 5 5 5 5;
 }
