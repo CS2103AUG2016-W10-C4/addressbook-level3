@@ -26,7 +26,7 @@ public class MainWindow {
     private Stoppable mainApp;
     
     private static final String[] COMMON_STYLESHEETS = {"Fonts.css", "Common.css"};
-    private static final String[] AVAILABLE_THEMES = {"dark", "light"};
+    private static final String[] AVAILABLE_THEMES = {"dark", "light", "hotdog"};
     private static final String DEFAULT_THEME = "dark";
 
     public MainWindow(){
