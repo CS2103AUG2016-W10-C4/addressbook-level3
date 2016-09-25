@@ -113,6 +113,10 @@ public class MainWindow {
      * @return true if the theme was set successfully, false otherwise (because it is not a valid theme)  
      */
     public boolean setTheme(String theme) {
+        if (theme == null) {
+            return false;
+        }
+        
         if (Arrays.asList(MainWindow.AVAILABLE_THEMES).contains(theme.toLowerCase())) {
             this.container.getStylesheets().add(MainWindow.getThemePath(theme));
             return true;
