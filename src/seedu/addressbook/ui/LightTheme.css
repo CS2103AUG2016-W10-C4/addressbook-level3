@@ -1,0 +1,9 @@
+.text-field {
+    -fx-text-fill: #444;
+    -fx-control-inner-background: #efefef;
+}
+
+.text-area {
+    -fx-background-color: #efefef;
+    -fx-control-inner-background: #efefef;
+}

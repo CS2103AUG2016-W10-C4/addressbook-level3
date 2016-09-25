@@ -25,7 +25,8 @@ public class MainWindow {
     private Logic logic;
     private Stoppable mainApp;
     
-    private static final String[] AVAILABLE_THEMES = {"dark"};
+    private static final String[] COMMON_STYLESHEETS = {"Fonts.css", "Common.css"};
+    private static final String[] AVAILABLE_THEMES = {"dark", "light"};
     private static final String DEFAULT_THEME = "dark";
 
     public MainWindow(){
@@ -41,7 +42,9 @@ public class MainWindow {
     
     @FXML
     private void initialize() {
-        this.container.getStylesheets().add(MainWindow.getAssetPath("Fonts.css"));
+        for (String stylesheet : MainWindow.COMMON_STYLESHEETS) {
+            this.container.getStylesheets().add(MainWindow.getAssetPath(stylesheet));
+        }        
         this.setTheme(MainWindow.DEFAULT_THEME);
     }
 
