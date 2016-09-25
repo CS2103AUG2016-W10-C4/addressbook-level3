@@ -1,0 +1,11 @@
+.text-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: 'Source Code Pro';
+    -fx-font-weight: bold;
+}
+
+.text-area {
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 11pt;
+    -fx-padding: 5 5 5 5;
+}
