@@ -130,6 +130,10 @@ public class MainWindow {
         return MainWindow.getAssetPath(fileName);
     }
     
+    public static String[] getAvailableThemes() {
+        return MainWindow.AVAILABLE_THEMES;
+    }
+    
     /** 
      * Returns the full path to the file in the ui folder as a string. 
      * Do not include a slash in front of file name. 
