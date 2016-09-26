@@ -442,8 +442,8 @@ public class LogicTest {
         TestDataHelper helper = new TestDataHelper();
         Person pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
         Person pTarget2 = helper.generatePersonWithName("bla rAnDoM bla bceofeia");
-        Person p1 = helper.generatePersonWithName("key key");
-        Person p2 = helper.generatePersonWithName("KEy sduauo");
+        Person p1 = helper.generatePersonWithName("nothing to see");
+        Person p2 = helper.generatePersonWithName("hey");
 
         List<Person> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
         AddressBook expectedAB = helper.generateAddressBook(fourPersons);
