@@ -418,19 +418,19 @@ public class LogicTest {
     }
 
     @Test
-    public void execute_find_isCaseSensitive() throws Exception {
+    public void execute_find_isCaseInsensitive() throws Exception {
         TestDataHelper helper = new TestDataHelper();
-        Person pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
-        Person pTarget2 = helper.generatePersonWithName("bla KEY bla bceofeia");
-        Person p1 = helper.generatePersonWithName("key key");
-        Person p2 = helper.generatePersonWithName("KEy sduauo");
+        Person pTarget1 = helper.generatePersonWithName("pIKachu");
+        Person pTarget2 = helper.generatePersonWithName("pika Pikachu");
+        Person pTarget3 = helper.generatePersonWithName("PiKaChU tan");
+        Person pTarget4 = helper.generatePersonWithName("PIKACHU lee");
 
-        List<Person> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
+        List<Person> fourPersons = helper.generatePersonList(pTarget1, pTarget2, pTarget3, pTarget4);
         AddressBook expectedAB = helper.generateAddressBook(fourPersons);
-        List<Person> expectedList = helper.generatePersonList(pTarget1, pTarget2);
+        List<Person> expectedList = fourPersons;
         helper.addToAddressBook(addressBook, fourPersons);
 
-        assertCommandBehavior("find KEY",
+        assertCommandBehavior("find pikachu",
                                 Command.getMessageForPersonListShownSummary(expectedList),
                                 expectedAB,
                                 true,
@@ -442,8 +442,8 @@ public class LogicTest {
         TestDataHelper helper = new TestDataHelper();
         Person pTarget1 = helper.generatePersonWithName("bla bla KEY bla");
         Person pTarget2 = helper.generatePersonWithName("bla rAnDoM bla bceofeia");
-        Person p1 = helper.generatePersonWithName("key key");
-        Person p2 = helper.generatePersonWithName("KEy sduauo");
+        Person p1 = helper.generatePersonWithName("nothing to see");
+        Person p2 = helper.generatePersonWithName("hey");
 
         List<Person> fourPersons = helper.generatePersonList(p1, pTarget1, p2, pTarget2);
         AddressBook expectedAB = helper.generateAddressBook(fourPersons);

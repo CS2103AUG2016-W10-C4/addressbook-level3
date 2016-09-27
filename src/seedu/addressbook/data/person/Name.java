@@ -36,12 +36,12 @@ public class Name {
     public static boolean isValidName(String test) {
         return test.matches(NAME_VALIDATION_REGEX);
     }
-
+    
     /**
-     * Retrieves a listing of every word in the name, in order.
+     * Retrieves a listing of every word in the name, both in order and in lower case.
      */
-    public List<String> getWordsInName() {
-        return Arrays.asList(fullName.split("\\s+"));
+    public List<String> getLowerCaseWordsInName() {
+    	return Arrays.asList(fullName.toLowerCase().split("\\s+"));
     }
 
     @Override
