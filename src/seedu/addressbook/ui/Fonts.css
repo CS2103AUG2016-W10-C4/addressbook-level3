@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'Source Code Pro';
+    font-weight: normal;
+    font-style: normal;
+    src: url('fonts/SourceCodePro-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-weight: bold;
+    font-style: normal;
+    src: url('fonts/SourceCodePro-Bold.otf');
+}
+
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-weight: normal;
+    font-style: italic;
+    src: url('fonts/SourceCodePro-It.otf');
+}
+
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-weight: bold;
+    font-style: italic;
+    src: url('fonts/SourceCodePro-BoldIt.otf');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: normal;
+    font-style: normal;
+    src: url('fonts/SourceSansPro-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+    font-style: normal;
+    src: url('fonts/SourceSansPro-Bold.otf');
+}
+
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: normal;
+    font-style: italic;
+    src: url('fonts/SourceSansPro-It.otf');
+}
+
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+    font-style: italic;
+    src: url('fonts/SourceSansPro-BoldIt.otf');
+}

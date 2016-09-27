@@ -5,11 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.logic.Logic;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +24,10 @@ public class MainWindow {
 
     private Logic logic;
     private Stoppable mainApp;
+    
+    private static final String[] COMMON_STYLESHEETS = {"Fonts.css", "Common.css"};
+    private static final String[] AVAILABLE_THEMES = {"dark", "light", "hotdog"};
+    private static final String DEFAULT_THEME = "dark";
 
     public MainWindow(){
     }
@@ -33,13 +39,23 @@ public class MainWindow {
     public void setMainApp(Stoppable mainApp){
         this.mainApp = mainApp;
     }
+    
+    @FXML
+    private void initialize() {
+        for (String stylesheet : MainWindow.COMMON_STYLESHEETS) {
+            this.container.getStylesheets().add(MainWindow.getAssetPath(stylesheet));
+        }        
+        this.setTheme(MainWindow.DEFAULT_THEME);
+    }
 
     @FXML
     private TextArea outputConsole;
 
     @FXML
     private TextField commandInput;
-
+    
+    @FXML
+    private VBox container;
 
     @FXML
     void onCommand(ActionEvent event) {
@@ -90,6 +106,40 @@ public class MainWindow {
     public void displayWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
         display(MESSAGE_WELCOME, version, MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE, storageFileInfo);
+    }
+    
+    /** 
+     * Sets the current theme of the application.
+     * @return true if the theme was set successfully, false otherwise (because it is not a valid theme)  
+     */
+    public boolean setTheme(String theme) {
+        if (theme == null) {
+            return false;
+        }
+        
+        if (Arrays.asList(MainWindow.AVAILABLE_THEMES).contains(theme.toLowerCase())) {
+            this.container.getStylesheets().add(MainWindow.getThemePath(theme));
+            return true;
+        }
+        
+        return false;
+    }
+    
+    private static String getThemePath(String theme) {
+        String fileName = theme.substring(0, 1).toUpperCase() + theme.substring(1) + "Theme.css";
+        return MainWindow.getAssetPath(fileName);
+    }
+    
+    public static String[] getAvailableThemes() {
+        return MainWindow.AVAILABLE_THEMES;
+    }
+    
+    /** 
+     * Returns the full path to the file in the ui folder as a string. 
+     * Do not include a slash in front of file name. 
+     */
+    private static String getAssetPath(String file) {
+        return "/seedu/addressbook/ui/" + file;
     }
 
     /**

@@ -99,6 +99,11 @@ Examples:
 Clears all entries from the address book.<br>
 Format: `clear`  
 
+## View themes : `theme`
+View all themes supported by the application. Use the command line argument 
+`--theme` to change the application's theme when launching it.  
+Format: `theme`  
+
 ## Exiting the program : `exit`
 Exits the program.<br>
 Format: `exit`  

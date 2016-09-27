@@ -29,12 +29,12 @@ public class Gui {
         this.version = version;
     }
 
-    public void start(Stage stage, Stoppable mainApp) throws IOException {
-        mainWindow = createMainWindow(stage, mainApp);
+    public void start(Stage stage, Stoppable mainApp, String theme) throws IOException {
+        mainWindow = createMainWindow(stage, mainApp, theme);
         mainWindow.displayWelcomeMessage(version, logic.getStorageFilePath());
     }
 
-    private MainWindow createMainWindow(Stage stage, Stoppable mainApp) throws IOException{
+    private MainWindow createMainWindow(Stage stage, Stoppable mainApp, String theme) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("ui" + File.separator + "mainwindow.fxml"));
         stage.setTitle(version);
@@ -43,6 +43,7 @@ public class Gui {
         MainWindow mainWindow = loader.getController();
         mainWindow.setLogic(logic);
         mainWindow.setMainApp(mainApp);
+        mainWindow.setTheme(theme);
         return mainWindow;
     }
 
