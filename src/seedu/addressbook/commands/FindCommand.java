@@ -46,8 +46,8 @@ public class FindCommand extends Command {
         
     	Set<String> lowerCaseKeywords = new HashSet<>();
     	for (String keyword : keywords) {
-    		lowerCaseKeywords.add(keyword.toLowerCase());
-    	}    	
+            lowerCaseKeywords.add(keyword.toLowerCase());
+    	}
     	
     	final List<ReadOnlyPerson> matchedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : addressBook.getAllPersons()) {
