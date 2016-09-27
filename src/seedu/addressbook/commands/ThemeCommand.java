@@ -15,12 +15,16 @@ public class ThemeCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        StringJoiner sj = new StringJoiner(", ", "Available Themes: \n", "");
+        StringJoiner sj = new StringJoiner(", ");
         for (String theme : MainWindow.getAvailableThemes()) {
             sj.add(theme);
         }
         
-        return new CommandResult(sj.toString());
+        final String output = "Available Themes: \n"
+                + "     " + sj.toString() + "\n"
+                + "To change theme: Use the --theme=<THEME> "
+                + "command line argument when launching the application";
+        return new CommandResult(output);
     }
 
 }
