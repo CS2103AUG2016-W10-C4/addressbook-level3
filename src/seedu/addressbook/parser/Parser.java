@@ -1,13 +1,29 @@
 package seedu.addressbook.parser;
 
-import seedu.addressbook.commands.*;
-import seedu.addressbook.data.exception.IllegalValueException;
+import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.addressbook.commands.AddCommand;
+import seedu.addressbook.commands.ClearCommand;
+import seedu.addressbook.commands.Command;
+import seedu.addressbook.commands.DeleteCommand;
+import seedu.addressbook.commands.ExitCommand;
+import seedu.addressbook.commands.FindCommand;
+import seedu.addressbook.commands.HelpCommand;
+import seedu.addressbook.commands.IncorrectCommand;
+import seedu.addressbook.commands.ListByCommand;
+import seedu.addressbook.commands.ListCommand;
+import seedu.addressbook.commands.ThemeCommand;
+import seedu.addressbook.commands.ViewAllCommand;
+import seedu.addressbook.commands.ViewCommand;
+import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
  * Parses user input.
@@ -21,11 +37,10 @@ public class Parser {
 
     public static final Pattern PERSON_DATA_ARGS_FORMAT = // '/' forward slashes are reserved for delimiter prefixes
             Pattern.compile("(?<name>[^/]+)"
-                    + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
-                    + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
-                    + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
-                    + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
-
+                            + " (?<isPhonePrivate>p?)p/(?<phone>[^/]+)"
+                            + " (?<isEmailPrivate>p?)e/(?<email>[^/]+)"
+                            + " (?<isAddressPrivate>p?)a/(?<address>[^/]+)"
+                            + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     /**
      * Signals that the user input could not be parsed.
@@ -41,7 +56,8 @@ public class Parser {
      */
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    public Parser() {}
+    public Parser() {
+    }
 
     /**
      * Parses user input into command for execution.
@@ -59,36 +75,39 @@ public class Parser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return prepareAdd(arguments);
+        case AddCommand.COMMAND_WORD :
+            return prepareAdd(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return prepareDelete(arguments);
+        case DeleteCommand.COMMAND_WORD :
+            return prepareDelete(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD :
+            return new ClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return prepareFind(arguments);
+        case FindCommand.COMMAND_WORD :
+            return prepareFind(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListByCommand.COMMAND_WORD :
+            return prepareListBy(arguments);
 
-            case ViewCommand.COMMAND_WORD:
-                return prepareView(arguments);
+        case ListCommand.COMMAND_WORD :
+            return new ListCommand();
 
-            case ViewAllCommand.COMMAND_WORD:
-                return prepareViewAll(arguments);
-            
-            case ThemeCommand.COMMAND_WORD:
-                return new ThemeCommand();
+        case ViewCommand.COMMAND_WORD :
+            return prepareView(arguments);
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ViewAllCommand.COMMAND_WORD :
+            return prepareViewAll(arguments);
 
-            case HelpCommand.COMMAND_WORD: // Fallthrough
-            default:
-                return new HelpCommand();
+        case ThemeCommand.COMMAND_WORD :
+            return new ThemeCommand();
+
+        case ExitCommand.COMMAND_WORD :
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD : // Fallthrough
+        default :
+            return new HelpCommand();
         }
     }
 
@@ -98,27 +117,22 @@ public class Parser {
      * @param args full command args string
      * @return the prepared command
      */
-    private Command prepareAdd(String args){
+    private Command prepareAdd(String args) {
         final Matcher matcher = PERSON_DATA_ARGS_FORMAT.matcher(args.trim());
         // Validate arg string format
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         try {
-            return new AddCommand(
-                    matcher.group("name"),
+            return new AddCommand(matcher.group("name"),
 
-                    matcher.group("phone"),
-                    isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
+            matcher.group("phone"), isPrivatePrefixPresent(matcher.group("isPhonePrivate")),
 
-                    matcher.group("email"),
-                    isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
+            matcher.group("email"), isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
 
-                    matcher.group("address"),
-                    isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
+            matcher.group("address"), isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
 
-                    getTagsFromArgs(matcher.group("tagArguments"))
-            );
+            getTagsFromArgs(matcher.group("tagArguments")));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
@@ -144,7 +158,6 @@ public class Parser {
         final Collection<String> tagStrings = Arrays.asList(tagArguments.replaceFirst(" t/", "").split(" t/"));
         return new HashSet<>(tagStrings);
     }
-
 
     /**
      * Parses arguments in the context of the delete person command.
@@ -173,8 +186,7 @@ public class Parser {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new ViewCommand(targetIndex);
         } catch (ParseException | NumberFormatException e) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
     }
 
@@ -190,8 +202,7 @@ public class Parser {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
             return new ViewAllCommand(targetIndex);
         } catch (ParseException | NumberFormatException e) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewAllCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewAllCommand.MESSAGE_USAGE));
         }
     }
 
@@ -211,7 +222,6 @@ public class Parser {
         return Integer.parseInt(matcher.group("targetIndex"));
     }
 
-
     /**
      * Parses arguments in the context of the find person command.
      *
@@ -221,8 +231,7 @@ public class Parser {
     private Command prepareFind(String args) {
         final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    FindCommand.MESSAGE_USAGE));
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         // keywords delimited by whitespace
@@ -231,5 +240,33 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses the given arguments string to affirm as a valid field in Person
+     * class.
+     *
+     * @param args arguments string to parse as a field in Person.
+     * @return A boolean on whether the argument is a field in Person.
+     */
+    private boolean isArgumentFieldInPerson(String args) {
+        for (String parameter : ListByCommand.VALID_PARAMETERS) {
+            if (parameter.equalsIgnoreCase(args)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    /**
+     * Parses arguments in the context of the list by command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareListBy(String args) {
+        args = args.trim();
+        if (isArgumentFieldInPerson(args)) {
+            return new ListByCommand(args);
+        }
+        return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE));
+    }
 }
