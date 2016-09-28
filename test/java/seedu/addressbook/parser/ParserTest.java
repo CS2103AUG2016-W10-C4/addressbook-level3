@@ -19,6 +19,7 @@ import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
+import seedu.addressbook.commands.ListByCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ViewAllCommand;
 import seedu.addressbook.commands.ViewCommand;
@@ -151,6 +152,29 @@ public class ParserTest {
         final String input = "viewall " + testIndex;
         final ViewAllCommand result = parseAndAssertCommandType(input, ViewAllCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);
+    }
+
+    /**
+     * Test listBy by argument in command
+     */
+    @Test
+    public void listByCommand_noArgs() {
+        final String[] inputs = { "listBy", "listBy " };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void listByCommand_invalidArgs() {
+        final String[] inputs = { "listBy gargoyle", "listBy name 1", "listBy names" };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void listByCommand_validArgs_parsedCorrectly() {
+        final String input = "listBy name";
+        parseAndAssertCommandType(input, ListByCommand.class);
     }
 
     /**

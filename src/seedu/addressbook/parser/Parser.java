@@ -18,6 +18,7 @@ import seedu.addressbook.commands.ExitCommand;
 import seedu.addressbook.commands.FindCommand;
 import seedu.addressbook.commands.HelpCommand;
 import seedu.addressbook.commands.IncorrectCommand;
+import seedu.addressbook.commands.ListByCommand;
 import seedu.addressbook.commands.ListCommand;
 import seedu.addressbook.commands.ThemeCommand;
 import seedu.addressbook.commands.ViewAllCommand;
@@ -74,35 +75,38 @@ public class Parser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case AddCommand.COMMAND_WORD :
             return prepareAdd(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteCommand.COMMAND_WORD :
             return prepareDelete(arguments);
 
-        case ClearCommand.COMMAND_WORD:
+        case ClearCommand.COMMAND_WORD :
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
+        case FindCommand.COMMAND_WORD :
             return prepareFind(arguments);
 
-        case ListCommand.COMMAND_WORD:
+        case ListByCommand.COMMAND_WORD :
+            return prepareListBy(arguments);
+
+        case ListCommand.COMMAND_WORD :
             return new ListCommand();
 
-        case ViewCommand.COMMAND_WORD:
+        case ViewCommand.COMMAND_WORD :
             return prepareView(arguments);
 
-        case ViewAllCommand.COMMAND_WORD:
+        case ViewAllCommand.COMMAND_WORD :
             return prepareViewAll(arguments);
 
-        case ThemeCommand.COMMAND_WORD:
+        case ThemeCommand.COMMAND_WORD :
             return new ThemeCommand();
 
-        case ExitCommand.COMMAND_WORD:
+        case ExitCommand.COMMAND_WORD :
             return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD: // Fallthrough
-        default:
+        case HelpCommand.COMMAND_WORD : // Fallthrough
+        default :
             return new HelpCommand();
         }
     }
@@ -236,4 +240,33 @@ public class Parser {
         return new FindCommand(keywordSet);
     }
 
+    /**
+     * Parses the given arguments string to affirm as a valid field in Person
+     * class.
+     *
+     * @param args arguments string to parse as a field in Person.
+     * @return A boolean on whether the argument is a field in Person.
+     */
+    private boolean isArgumentFieldInPerson(String args) {
+        for (String parameter : ListByCommand.VALID_PARAMETERS) {
+            if (parameter.equalsIgnoreCase(args)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Parses arguments in the context of the list by command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareListBy(String args) {
+        args = args.trim();
+        if (isArgumentFieldInPerson(args)) {
+            return new ListByCommand(args);
+        }
+        return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE));
+    }
 }
