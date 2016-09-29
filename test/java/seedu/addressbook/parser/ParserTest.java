@@ -141,21 +141,21 @@ public class ParserTest {
      */
     @Test
     public void listByCommand_noArgs() {
-        final String[] inputs = { "listBy", "listBy " };
+        final String[] inputs = { "listby", "listby " };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
     @Test
     public void listByCommand_invalidArgs() {
-        final String[] inputs = { "listBy gargoyle", "listBy name 1", "listBy names" };
+        final String[] inputs = { "listby gargoyle", "listby name 1", "listby names" };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
     }
 
     @Test
     public void listByCommand_validArgs_parsedCorrectly() {
-        final String input = "listBy name";
+        final String input = "listby name";
         parseAndAssertCommandType(input, ListByCommand.class);
     }
     
