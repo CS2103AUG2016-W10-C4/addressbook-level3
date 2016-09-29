@@ -10,12 +10,12 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  */
 public class ListByCommand extends Command {
 
-    public static final String COMMAND_WORD = "listBy";
+    public static final String COMMAND_WORD = "listby";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ":\n"
-                                               + "Displays all persons in the address book as a list sorted by a user specified field.\n\t"
-                                               + "Parameters: \"name\", \"phone\", \"email\" or \"address\".\n\t"
-                                               + "Example: " + COMMAND_WORD + " name";
+           + "Displays all persons in the address book as a list sorted by a user specified field.\n\t"
+           + "Parameters: \"name\", \"phone\", \"email\" or \"address\".\n\t"
+           + "Example: " + COMMAND_WORD + " name";
 
     public static final String[] VALID_PARAMETERS = new String[] { "name", "phone", "email", "address" };
 
