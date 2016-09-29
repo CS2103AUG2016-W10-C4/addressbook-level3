@@ -71,6 +71,9 @@ public class Parser {
             case FindCommand.COMMAND_WORD:
                 return prepareFind(arguments);
 
+            case ListByCommand.COMMAND_WORD:
+                return prepareListBy(arguments);
+                
             case ListCommand.COMMAND_WORD:
                 return new ListCommand();
 
@@ -230,6 +233,34 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
+    
+    /**
+     * Parses the given arguments string to affirm as a valid field in Person
+     * class.
+     *
+     * @param args arguments string to parse as a field in Person.
+     * @return A boolean on whether the argument is a field in Person.
+     */
+    private boolean isArgumentFieldInPerson(String args) {
+        for (String parameter : ListByCommand.VALID_PARAMETERS) {
+            if (parameter.equalsIgnoreCase(args)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-
+    /**
+     * Parses arguments in the context of the list by command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
+    private Command prepareListBy(String args) {
+        args = args.trim();
+        if (isArgumentFieldInPerson(args)) {
+            return new ListByCommand(args);
+        }
+        return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE));
+    }
 }

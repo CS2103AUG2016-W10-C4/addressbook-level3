@@ -135,7 +135,30 @@ public class ParserTest {
         final ViewAllCommand result = parseAndAssertCommandType(input, ViewAllCommand.class);
         assertEquals(result.getTargetIndex(), testIndex);
     }
+    
+    /**
+     * Test listBy by argument in command
+     */
+    @Test
+    public void listByCommand_noArgs() {
+        final String[] inputs = { "listby", "listby " };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
 
+    @Test
+    public void listByCommand_invalidArgs() {
+        final String[] inputs = { "listby gargoyle", "listby name 1", "listby names" };
+        final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByCommand.MESSAGE_USAGE);
+        parseAndAssertIncorrectWithMessage(resultMessage, inputs);
+    }
+
+    @Test
+    public void listByCommand_validArgs_parsedCorrectly() {
+        final String input = "listby name";
+        parseAndAssertCommandType(input, ListByCommand.class);
+    }
+    
     /**
      * Test find persons by keyword in name command
      */
