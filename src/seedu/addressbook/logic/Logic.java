@@ -86,7 +86,7 @@ public class Logic {
      * @throws Exception if there was any problem during command execution.
      */
     private CommandResult execute(Command command) throws Exception {
-        command.setData(addressBook, lastShownList);
+        command.setData(addressBook, commandLog, lastShownList);
         CommandResult result = command.execute();
         
         if (command.isMutable()) {
