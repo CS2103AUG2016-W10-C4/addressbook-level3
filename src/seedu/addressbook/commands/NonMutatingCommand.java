@@ -17,10 +17,4 @@ public abstract class NonMutatingCommand extends Command {
     public boolean isMutable() {
         return false;
     }
-
-    @Override
-    public String getExecutedAction() {
-        return null;
-    }
-
 }

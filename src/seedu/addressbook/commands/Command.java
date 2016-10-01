@@ -71,6 +71,4 @@ public abstract class Command {
     }
     
     public abstract boolean isMutable();
-    
-    public abstract String getExecutedAction();
 }

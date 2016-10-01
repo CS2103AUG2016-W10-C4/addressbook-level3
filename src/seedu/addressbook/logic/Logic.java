@@ -89,8 +89,8 @@ public class Logic {
         command.setData(addressBook, commandLog, lastShownList);
         CommandResult result = command.execute();
         
-        if (command.isMutable()) {
-            commandLog.log(command);
+        if (command.isMutable() && result.hasSucceeded()) {
+            commandLog.log(result);
             storage.save(addressBook);
         }
         
