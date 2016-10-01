@@ -17,10 +17,9 @@ import java.util.Optional;
  */
 public class Logic {
 
-
     private StorageFile storage;
     private AddressBook addressBook;
-    private CommandLog logBook;
+    private CommandLog commandLog;
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
@@ -28,13 +27,13 @@ public class Logic {
     public Logic() throws Exception{
         setStorage(initializeStorage());
         setAddressBook(storage.load());
-        logBook=new CommandLog();
+        commandLog = new CommandLog();
     }
 
     Logic(StorageFile storageFile, AddressBook addressBook){
         setStorage(storageFile);
         setAddressBook(addressBook);
-        logBook=new CommandLog();
+        commandLog = new CommandLog();
     }
 
     void setStorage(StorageFile storage){
@@ -89,8 +88,9 @@ public class Logic {
     private CommandResult execute(Command command) throws Exception {
         command.setData(addressBook, lastShownList);
         CommandResult result = command.execute();
-        if (command.isMutable()){
-            logBook.log(command);
+        
+        if (command.isMutable()) {
+            commandLog.log(command);
             storage.save(addressBook);
         }
         
