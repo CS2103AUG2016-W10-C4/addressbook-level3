@@ -11,7 +11,7 @@ public class ClearCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Address Book cleared!";
     
-    public static final String MESSAGE_ACTION ="cleared AddressBook";
+    public static final String MESSAGE_ACTION = "Cleared address book";
     
     
     
