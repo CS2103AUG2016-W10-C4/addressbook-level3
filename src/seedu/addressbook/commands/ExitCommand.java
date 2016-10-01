@@ -3,7 +3,7 @@ package seedu.addressbook.commands;
 /**
  * Terminates the program.
  */
-public class ExitCommand extends Command {
+public class ExitCommand extends NonMutatingCommand {
 
     public static final String COMMAND_WORD = "exit";
 
@@ -15,17 +15,5 @@ public class ExitCommand extends Command {
     public CommandResult execute() {
         return new CommandResult(MESSAGE_EXIT_ACKNOWEDGEMENT);
     }
-
-    @Override
-    public boolean isMutable() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public String getExecutedAction() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
+    
 }
