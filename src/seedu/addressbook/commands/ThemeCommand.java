@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 
 import seedu.addressbook.ui.MainWindow;
 
-public class ThemeCommand extends Command {
+public class ThemeCommand extends NonMutatingCommand {
 
     public static final String COMMAND_WORD = "theme";
 
