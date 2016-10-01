@@ -4,7 +4,7 @@ package seedu.addressbook.commands;
 /**
  * Shows help instructions.
  */
-public class HelpCommand extends Command {
+public class HelpCommand extends NonMutatingCommand {
 
     public static final String COMMAND_WORD = "help";
 
@@ -17,6 +17,7 @@ public class HelpCommand extends Command {
             + "\n" + FindCommand.MESSAGE_USAGE
             + "\n" + ListCommand.MESSAGE_USAGE
             + "\n" + ListByCommand.MESSAGE_USAGE
+            + "\n" + LogCommand.MESSAGE_USAGE
             + "\n" + ViewCommand.MESSAGE_USAGE
             + "\n" + ViewAllCommand.MESSAGE_USAGE
             + "\n" + ThemeCommand.MESSAGE_USAGE

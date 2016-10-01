@@ -17,7 +17,8 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX\n\t"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
+    
 
 
     public DeleteCommand(int targetVisibleIndex) {
@@ -33,10 +34,16 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
 
         } catch (IndexOutOfBoundsException ie) {
-            return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, false);
         } catch (PersonNotFoundException pnfe) {
-            return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+            return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK, false);
         }
+    }
+
+
+    @Override
+    public boolean isMutable() {
+        return true;
     }
 
 }

@@ -2,6 +2,7 @@ package seedu.addressbook.commands;
 
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.CommandLog;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import static seedu.addressbook.ui.Gui.DISPLAYED_INDEX_OFFSET;
  */
 public abstract class Command {
     protected AddressBook addressBook;
+    protected CommandLog commandLog;
     protected List<? extends ReadOnlyPerson> relevantPersons;
     private int targetIndex = -1;
 
@@ -43,9 +45,11 @@ public abstract class Command {
 
     /**
      * Supplies the data the command will operate on.
+     * @param commandLog TODO
      */
-    public void setData(AddressBook addressBook, List<? extends ReadOnlyPerson> relevantPersons) {
+    public void setData(AddressBook addressBook, CommandLog commandLog, List<? extends ReadOnlyPerson> relevantPersons) {
         this.addressBook = addressBook;
+        this.commandLog = commandLog;
         this.relevantPersons = relevantPersons;
     }
 
@@ -65,4 +69,6 @@ public abstract class Command {
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
+    
+    public abstract boolean isMutable();
 }

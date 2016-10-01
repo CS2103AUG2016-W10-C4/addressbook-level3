@@ -63,8 +63,13 @@ public class AddCommand extends Command {
             addressBook.addPerson(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         } catch (UniquePersonList.DuplicatePersonException dpe) {
-            return new CommandResult(MESSAGE_DUPLICATE_PERSON);
+            return new CommandResult(MESSAGE_DUPLICATE_PERSON, false);
         }
+    }
+
+    @Override
+    public boolean isMutable() {
+        return true;
     }
 
 }

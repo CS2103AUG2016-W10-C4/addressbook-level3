@@ -3,6 +3,7 @@ package seedu.addressbook.logic;
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.CommandLog;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
@@ -16,9 +17,9 @@ import java.util.Optional;
  */
 public class Logic {
 
-
     private StorageFile storage;
     private AddressBook addressBook;
+    private CommandLog commandLog;
 
     /** The list of person shown to the user most recently.  */
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
@@ -26,11 +27,13 @@ public class Logic {
     public Logic() throws Exception{
         setStorage(initializeStorage());
         setAddressBook(storage.load());
+        commandLog = new CommandLog();
     }
 
     Logic(StorageFile storageFile, AddressBook addressBook){
         setStorage(storageFile);
         setAddressBook(addressBook);
+        commandLog = new CommandLog();
     }
 
     void setStorage(StorageFile storage){
@@ -76,16 +79,21 @@ public class Logic {
     }
 
     /**
-     * Executes the command, updates storage, and returns the result.
+     * Executes the command, updates storage,logs the action done and returns the result.
      *
      * @param command user command
      * @return result of the command
      * @throws Exception if there was any problem during command execution.
      */
     private CommandResult execute(Command command) throws Exception {
-        command.setData(addressBook, lastShownList);
+        command.setData(addressBook, commandLog, lastShownList);
         CommandResult result = command.execute();
-        storage.save(addressBook);
+        
+        if (command.isMutable() && result.hasSucceeded()) {
+            commandLog.log(result);
+            storage.save(addressBook);
+        }
+        
         return result;
     }
 
