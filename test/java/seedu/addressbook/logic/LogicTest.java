@@ -173,6 +173,7 @@ public class LogicTest {
 
         // setup starting state
         addressBook.addPerson(toBeAdded); // person already in internal address book
+        saveFile.save(addressBook);
 
         // execute command and verify result
         assertCommandBehavior(
@@ -222,7 +223,7 @@ public class LogicTest {
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
         TestDataHelper helper = new TestDataHelper();
         List<Person> lastShownList = helper.generatePersonList(false, true);
-
+        
         logic.setLastShownList(lastShownList);
 
         assertCommandBehavior(commandWord + " -1", expectedMessage, AddressBook.empty(), false, lastShownList);
@@ -268,6 +269,7 @@ public class LogicTest {
 
         addressBook.addPerson(p2);
         logic.setLastShownList(lastShownList);
+        saveFile.save(addressBook);
 
         assertCommandBehavior("view 1",
                               Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK,
@@ -324,6 +326,7 @@ public class LogicTest {
 
         addressBook.addPerson(p1);
         logic.setLastShownList(lastShownList);
+        saveFile.save(addressBook);
 
         assertCommandBehavior("viewall 2",
                                 Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK,
@@ -383,6 +386,7 @@ public class LogicTest {
         helper.addToAddressBook(addressBook, threePersons);
         addressBook.removePerson(p2);
         logic.setLastShownList(threePersons);
+        saveFile.save(addressBook);
 
         assertCommandBehavior("delete 2",
                                 Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK,
@@ -547,6 +551,7 @@ public class LogicTest {
             for(Person p: personsToAdd){
                 addressBook.addPerson(p);
             }
+            saveFile.save(addressBook);
         }
 
         /**
