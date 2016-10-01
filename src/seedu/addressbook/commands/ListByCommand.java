@@ -8,7 +8,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListByCommand extends Command {
+public class ListByCommand extends NonMutatingCommand {
 
     public static final String COMMAND_WORD = "listby";
 
