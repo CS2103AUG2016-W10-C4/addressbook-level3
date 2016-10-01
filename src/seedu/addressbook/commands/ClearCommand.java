@@ -28,14 +28,11 @@ public class ClearCommand extends Command {
 
     @Override
     public boolean isMutable() {
-        // TODO Auto-generated method stub
         return true;
     }
 
-
     @Override
     public String getExecutedAction() {
-        // TODO Auto-generated method stub
         return MESSAGE_ACTION;
     }
 }

@@ -4,7 +4,7 @@ package seedu.addressbook.commands;
 /**
  * Shows help instructions.
  */
-public class HelpCommand extends Command {
+public class HelpCommand extends NonMutatingCommand {
 
     public static final String COMMAND_WORD = "help";
 
@@ -26,17 +26,5 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute() {
         return new CommandResult(MESSAGE_ALL_USAGES);
-    }
-
-    @Override
-    public boolean isMutable() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public String getExecutedAction() {
-        // TODO Auto-generated method stub
-        return null;
     }
 }

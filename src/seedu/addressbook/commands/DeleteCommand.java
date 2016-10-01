@@ -43,14 +43,12 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean isMutable() {
-        // TODO Auto-generated method stub
         return true;
     }
 
 
     @Override
     public String getExecutedAction() {
-        // TODO Auto-generated method stub
         return String.format(MESSAGE_DELETE_PERSON_SUCCESS, getTargetPerson());
     }
 

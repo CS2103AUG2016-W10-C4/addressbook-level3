@@ -8,7 +8,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  * Shows all details of the person identified using the last displayed index.
  * Private contact details are shown.
  */
-public class ViewAllCommand extends Command {
+public class ViewAllCommand extends NonMutatingCommand {
 
     public static final String COMMAND_WORD = "viewall";
 
@@ -38,17 +38,4 @@ public class ViewAllCommand extends Command {
         }
     }
 
-
-    @Override
-    public boolean isMutable() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-
-    @Override
-    public String getExecutedAction() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }

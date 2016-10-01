@@ -8,7 +8,7 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
  * Shows details of the person identified using the last displayed index.
  * Private contact details are not shown.
  */
-public class ViewCommand extends Command {
+public class ViewCommand extends NonMutatingCommand {
 
     public static final String COMMAND_WORD = "view";
 
@@ -37,19 +37,4 @@ public class ViewCommand extends Command {
             return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
     }
-
-
-    @Override
-    public boolean isMutable() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-
-    @Override
-    public String getExecutedAction() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }
