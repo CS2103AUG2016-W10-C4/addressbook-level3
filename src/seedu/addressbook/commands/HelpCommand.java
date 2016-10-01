@@ -17,6 +17,7 @@ public class HelpCommand extends NonMutatingCommand {
             + "\n" + FindCommand.MESSAGE_USAGE
             + "\n" + ListCommand.MESSAGE_USAGE
             + "\n" + ListByCommand.MESSAGE_USAGE
+            + "\n" + LogCommand.MESSAGE_USAGE
             + "\n" + ViewCommand.MESSAGE_USAGE
             + "\n" + ViewAllCommand.MESSAGE_USAGE
             + "\n" + ThemeCommand.MESSAGE_USAGE
