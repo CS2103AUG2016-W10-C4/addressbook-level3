@@ -14,7 +14,7 @@ import seedu.addressbook.commands.Command;
  */
 public class CommandLog {
     private  ArrayList<String> commandsEntered;
-    private static final String LOGGED_COMMAND_MESSAGE = "Time:%1$s| User %2$s";
+    private static final String LOGGED_COMMAND_MESSAGE = "Time: %1$s | %2$s";
     
     public CommandLog() {
         commandsEntered = new ArrayList<String>();
@@ -43,8 +43,8 @@ public class CommandLog {
      * @param command
      */
     public void log(Command command) {
-        String actionDone;
-        actionDone = String.format(LOGGED_COMMAND_MESSAGE, getCurrentTime(), command.getExecutedAction());
+        String actionDone = String.format(LOGGED_COMMAND_MESSAGE, getCurrentTime(), 
+                command.getExecutedAction());
         commandsEntered.add(actionDone);
     }
 }
