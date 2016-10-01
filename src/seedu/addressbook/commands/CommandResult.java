@@ -15,10 +15,17 @@ public class CommandResult {
 
     /** The list of persons that was produced by the command */
     private final List<? extends ReadOnlyPerson> relevantPersons;
+    
+    private boolean succeeded = true;
 
     public CommandResult(String feedbackToUser) {
         this.feedbackToUser = feedbackToUser;
         relevantPersons = null;
+    }
+    
+    public CommandResult(String feedbackToUser, boolean succeeded) {
+        this(feedbackToUser);
+        this.succeeded = succeeded; 
     }
 
     public CommandResult(String feedbackToUser, List<? extends ReadOnlyPerson> relevantPersons) {
@@ -35,6 +42,10 @@ public class CommandResult {
     
     public String getFeedback(){
         return feedbackToUser;
+    }
+
+    public boolean hasSucceeded() {
+        return succeeded;
     }
 
 }

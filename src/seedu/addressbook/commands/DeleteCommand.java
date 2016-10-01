@@ -34,9 +34,9 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, target));
 
         } catch (IndexOutOfBoundsException ie) {
-            return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            return new CommandResult(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, false);
         } catch (PersonNotFoundException pnfe) {
-            return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+            return new CommandResult(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK, false);
         }
     }
 
@@ -44,12 +44,6 @@ public class DeleteCommand extends Command {
     @Override
     public boolean isMutable() {
         return true;
-    }
-
-
-    @Override
-    public String getExecutedAction() {
-        return String.format(MESSAGE_DELETE_PERSON_SUCCESS, getTargetPerson());
     }
 
 }

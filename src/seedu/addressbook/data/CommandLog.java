@@ -2,7 +2,7 @@ package seedu.addressbook.data;
 
 import java.util.ArrayList;
 
-import seedu.addressbook.commands.Command;
+import seedu.addressbook.commands.CommandResult;
 
 
 /**
@@ -34,7 +34,7 @@ public class CommandLog {
      * Logs a mutating AddressBook command
      * @param command
      */
-    public void log(Command command) {
-        commandsEntered.add(new LogEntry(command.getExecutedAction()));
+    public void log(CommandResult result) {
+        commandsEntered.add(new LogEntry(result.getFeedback()));
     }
 }

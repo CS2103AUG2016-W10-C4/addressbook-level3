@@ -11,11 +11,6 @@ public class ClearCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Address Book cleared!";
     
-    public static final String MESSAGE_ACTION = "Cleared address book";
-    
-    
-    
-
     public ClearCommand() {}
 
 
@@ -29,10 +24,5 @@ public class ClearCommand extends Command {
     @Override
     public boolean isMutable() {
         return true;
-    }
-
-    @Override
-    public String getExecutedAction() {
-        return MESSAGE_ACTION;
     }
 }
